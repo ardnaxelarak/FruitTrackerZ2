@@ -1,11 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace FruitTrackerZ2 {
-    internal class LocationIcon : StackedIcons {
+    public class LocationIcon : StackedIcons {
         private static readonly IconManager IM = IconManager.Instance;
         private static readonly Image CROSS = IM.GetImage("overlays/cross");
+
+        public event Action<Point>? OnCaptureClick;
 
         private bool value = false;
 
@@ -24,7 +28,7 @@ namespace FruitTrackerZ2 {
 
         private Image UncheckedImg;
         private Image CheckedImg;
-        private Image? ItemImg;
+        private List<Image> ItemImgs = new();
 
         // private string[][] imageSources = Array.Empty<string[]>();
 
@@ -34,10 +38,10 @@ namespace FruitTrackerZ2 {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string? ItemId {
             set {
+                this.ItemImgs.Clear();
                 if (value != null) {
-                    ItemImg = IM.GetImage(value);
-                } else {
-                    ItemImg = null;
+                    this.ItemImgs.Add(IM.GetImage($"{value}#outline"));
+                    this.ItemImgs.Add(IM.GetImage(value));
                 }
                 this.UpdateIcon();
             }
@@ -64,8 +68,8 @@ namespace FruitTrackerZ2 {
         private void UpdateIcon() {
             this.Icons.Clear();
             this.Icons.Add(this.Value ? this.CheckedImg : this.UncheckedImg);
-            if (!this.Value && this.ItemImg != null) {
-                this.Icons.Add(this.ItemImg);
+            if (!this.Value) {
+                this.Icons.AddRange(this.ItemImgs);
             } else if (this.Value) {
                 this.Icons.Add(CROSS);
             }
@@ -78,10 +82,10 @@ namespace FruitTrackerZ2 {
             if (e.Button == MouseButtons.Left) {
                 this.Value = !this.Value;
             } else if (e.Button == MouseButtons.Right) {
-                if (this.ItemImg != null) {
+                if (this.ItemImgs.Count > 0) {
                     this.ItemId = null;
                 } else {
-                    this.ItemId = "items/hammer";
+                    this.OnCaptureClick?.Invoke(PointToScreen(e.Location));
                 }
             }
         }

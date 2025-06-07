@@ -17,4 +17,9 @@ namespace FruitTrackerZ2 {
     public class LocationList {
         public List<ItemData> Locations { get; set; } = new();
     }
+
+    public class Settings {
+        public List<string> Spells { get; set; } = new();
+        public List<string> Items { get; set; } = new();
+    }
 }

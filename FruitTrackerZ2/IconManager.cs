@@ -8,6 +8,9 @@ namespace FruitTrackerZ2 {
     public class IconManager {
         private static readonly GrayScaleEffect GRAYSCALE = new();
         private static readonly BrightnessContrastEffect DARKEN = new(70, 0);
+        private static readonly BrightnessContrastEffect WHITEN = new(255, 0);
+        private static readonly BlurEffect BLUR = new(10, false);
+
         private static readonly Regex REGEX = new(@"([^#]+)(?:#(\w+))?", RegexOptions.Compiled);
         private static IconManager? instance;
 
@@ -46,6 +49,10 @@ namespace FruitTrackerZ2 {
                 case "inactive":
                     image.ApplyEffect(GRAYSCALE);
                     image.ApplyEffect(DARKEN);
+                    return;
+                case "outline":
+                    image.ApplyEffect(WHITEN);
+                    image.ApplyEffect(BLUR);
                     return;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -21,8 +22,14 @@ namespace FruitTrackerZ2 {
 
         private Z2Equipment? tracking;
 
+        public event Action<LocationIcon, Point>? OnLocationCapture;
+        public event Action<object?, MouseEventArgs>? OnBackgroundClick;
+
         public PalaceTable() {
             InitializeComponent();
+
+            this.MouseDown += (sender, e) => this.OnBackgroundClick?.Invoke(sender, e);
+            this.palaceLayoutPanel.MouseDown += (sender, e) => this.OnBackgroundClick?.Invoke(sender, e);
         }
 
         public void SetAutoTracker(Z2Equipment tracking) {
@@ -83,6 +90,7 @@ namespace FruitTrackerZ2 {
                     CellId = itemStr,
                     Padding = new(3),
                 };
+                item.OnCaptureClick += point => this.OnLocationCapture?.Invoke(item, point);
                 palaceLayoutPanel.Controls.Add(item, 3 * (i / 3) + 1, i % 3);
                 contentsIcons.Add(item);
 

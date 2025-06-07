@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace FruitTrackerZ2 {
@@ -34,8 +35,13 @@ namespace FruitTrackerZ2 {
 
         private Z2Equipment? tracking;
 
+        public event Action<object?, MouseEventArgs>? OnBackgroundClick;
+
         public InventoryTable() {
             InitializeComponent();
+
+            this.MouseDown += (sender, e) => this.OnBackgroundClick?.Invoke(sender, e);
+            this.itemLayoutPanel.MouseDown += (sender, e) => this.OnBackgroundClick?.Invoke(sender, e);
 
             shieldIcon = new() {
                 BackColor = itemLayoutPanel.BackColor,

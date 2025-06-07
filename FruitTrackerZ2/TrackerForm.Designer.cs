@@ -33,7 +33,7 @@
             spacerLabel = new System.Windows.Forms.ToolStripStatusLabel();
             autoTrackingLabel = new System.Windows.Forms.ToolStripStatusLabel();
             locationTable = new LocationTable();
-            palaceTable1 = new PalaceTable();
+            palaceTable = new PalaceTable();
             statusStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -80,28 +80,29 @@
             locationTable.Size = new System.Drawing.Size(398, 168);
             locationTable.TabIndex = 2;
             // 
-            // palaceTable1
+            // palaceTable
             // 
-            palaceTable1.Location = new System.Drawing.Point(269, 12);
-            palaceTable1.Margin = new System.Windows.Forms.Padding(0);
-            palaceTable1.Name = "palaceTable1";
-            palaceTable1.Size = new System.Drawing.Size(252, 168);
-            palaceTable1.TabIndex = 3;
+            palaceTable.Location = new System.Drawing.Point(269, 12);
+            palaceTable.Margin = new System.Windows.Forms.Padding(0);
+            palaceTable.Name = "palaceTable";
+            palaceTable.Size = new System.Drawing.Size(252, 168);
+            palaceTable.TabIndex = 3;
             // 
-            // Form1
+            // TrackerForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.Control;
             ClientSize = new System.Drawing.Size(532, 406);
-            Controls.Add(palaceTable1);
+            Controls.Add(palaceTable);
             Controls.Add(locationTable);
             Controls.Add(statusStrip);
             Controls.Add(inventoryTable);
             Icon = (System.Drawing.Icon) resources.GetObject("$this.Icon");
-            Name = "Form1";
+            Name = "TrackerForm";
             Text = "FruitTracker";
             Load += TrackerForm_Load;
+            MouseDown += BackgroundClick;
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             ResumeLayout(false);
@@ -114,6 +115,6 @@
         private System.Windows.Forms.ToolStripStatusLabel spacerLabel;
         private System.Windows.Forms.ToolStripStatusLabel autoTrackingLabel;
         private LocationTable locationTable;
-        private PalaceTable palaceTable1;
+        private PalaceTable palaceTable;
     }
 }

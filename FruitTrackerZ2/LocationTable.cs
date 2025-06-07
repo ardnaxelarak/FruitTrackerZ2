@@ -33,8 +33,8 @@ namespace FruitTrackerZ2 {
             }
 
             foreach (var icon in locationIcons) {
-                if (tracking.Locations.ContainsKey(icon.CellId)) {
-                    icon.Value = tracking.Locations[icon.CellId].Value;
+                if (tracking.Locations.TryGetValue(icon.CellId, out ITrackable? value)) {
+                    icon.Value = value.Value;
                 }
             }
         }

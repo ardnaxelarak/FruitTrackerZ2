@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Item Tracker</title>
+        <link rel="stylesheet" href="tracker.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+        <script src="tracker.js"></script>
+    </head>
+    <body>
+        <div class="mainTable">
+            <table class="itemsTable">
+                <tr>
+                    <td id="shield" class="cell">
+                        <img class="cell-icon" src="icons/items/no_shield.png" />
+                    </td>
+                    <td id="fire" class="cell">
+                        <img class="cell-icon" src="icons/items/no_fire.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="jump" class="cell">
+                        <img class="cell-icon" src="icons/items/no_jump.png" />
+                    </td>
+                    <td id="reflect" class="cell">
+                        <img class="cell-icon" src="icons/items/no_reflect.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="life" class="cell">
+                        <img class="cell-icon" src="icons/items/no_life.png" />
+                    </td>
+                    <td id="spell" class="cell">
+                        <img class="cell-icon" src="icons/items/no_spell.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="fairy" class="cell">
+                        <img class="cell-icon" src="icons/items/no_fairy.png" />
+                    </td>
+                    <td id="thunder" class="cell">
+                        <img class="cell-icon" src="icons/items/no_thunder.png" />
+                    </td>
+                </tr>
+            </table>
+            <table class="itemsTable">
+                <tr>
+                    <td id="candle" class="cell">
+                        <img class="cell-icon" src="icons/items/no_candle.png" />
+                    </td>
+                    <td id="glove" class="cell">
+                        <img class="cell-icon" src="icons/items/no_glove.png" />
+                    </td>
+                    <td id="raft" class="cell">
+                        <img class="cell-icon" src="icons/items/no_raft.png" />
+                    </td>
+                    <td id="hammer" class="cell">
+                        <img class="cell-icon" src="icons/items/no_hammer.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="boots" class="cell">
+                        <img class="cell-icon" src="icons/items/no_boots.png" />
+                    </td>
+                    <td id="flute" class="cell">
+                        <img class="cell-icon" src="icons/items/no_flute.png" />
+                    </td>
+                    <td id="cross" class="cell">
+                        <img class="cell-icon" src="icons/items/no_cross.png" />
+                    </td>
+                    <td id="magickey" class="cell">
+                        <img class="cell-icon" src="icons/items/no_magickey.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="trophy" class="cell">
+                        <img class="cell-icon" src="icons/items/no_trophy.png" />
+                    </td>
+                    <td id="mirror" class="cell">
+                        <img class="cell-icon" src="icons/items/no_mirror.png" />
+                    </td>
+                    <td id="bagunote" class="cell">
+                        <img class="cell-icon" src="icons/items/no_bagunote.png" />
+                    </td>
+                    <td id="medicine" class="cell">
+                        <img class="cell-icon" src="icons/items/no_medicine.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="water" class="cell">
+                        <img class="cell-icon" src="icons/items/no_water.png" />
+                    </td>
+                    <td id="kid" class="cell">
+                        <img class="cell-icon" src="icons/items/no_kid.png" />
+                    </td>
+                    <td id="downstab" class="cell">
+                        <img class="cell-icon" src="icons/items/no_downstab.png" />
+                    </td>
+                    <td id="upstab" class="cell">
+                        <img class="cell-icon" src="icons/items/no_upstab.png" />
+                    </td>
+                </tr>
+            </table>
+            <table class="itemsTable">
+                <tr>
+                    <td id="pillar1" class="cell">
+                        <img class="cell-icon" src="icons/palaces/pillar1.png" />
+                    </td>
+                    <td id="pillar4" class="cell">
+                        <img class="cell-icon" src="icons/palaces/pillar4.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="pillar2" class="cell">
+                        <img class="cell-icon" src="icons/palaces/pillar2.png" />
+                    </td>
+                    <td id="pillar5" class="cell">
+                        <img class="cell-icon" src="icons/palaces/pillar5.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td id="pillar3" class="cell">
+                        <img class="cell-icon" src="icons/palaces/pillar3.png" />
+                    </td>
+                    <td id="pillar6" class="cell">
+                        <img class="cell-icon" src="icons/palaces/pillar6.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cell" colspan="2">
+                        <div id="pillar7" class="double-cell">
+                            <img class="cell-icon" src="icons/palaces/pillar7.png" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

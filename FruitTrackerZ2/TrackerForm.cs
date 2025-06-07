@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -11,6 +15,8 @@ using YamlDotNet.Serialization.NamingConventions;
 namespace FruitTrackerZ2
 {
     public partial class TrackerForm : Form {
+        private static readonly int PORT = 5777;
+
         private bool autoTracking = false;
         private Z2Equipment tracking = new();
         private CancellationTokenSource trackingToken = new CancellationTokenSource();
@@ -30,6 +36,8 @@ namespace FruitTrackerZ2
             itemSelector.OnIconClicked += ItemSelectorIconClicked;
             selectors.Add(itemSelector);
             Controls.Add(itemSelector);
+
+            TrackerManager.Instance.Tracking = tracking;
         }
 
         private void autoTrackingLabel_MouseDown(object sender, MouseEventArgs e) {
@@ -72,6 +80,8 @@ namespace FruitTrackerZ2
                     this.settings = deserializer.Deserialize<Settings>(reader);
                 }
             } catch (Exception) { }
+
+            this.RunWebserver();
         }
 
         private void ItemSelectorIconClicked(string icon) {
@@ -101,6 +111,25 @@ namespace FruitTrackerZ2
 
         private void BackgroundClick(object? sender, MouseEventArgs e) {
             this.selectors.ForEach(selector => { selector.Visible = false; });
+        }
+
+        private void RunWebserver() {
+            WebApplicationBuilder builder = WebApplication.CreateBuilder();
+            builder.Services.AddSignalR();
+
+            WebApplication app = builder.Build();
+
+            app.UseStaticFiles();
+            app.MapHub<TrackingHub>("/webview");
+
+            string baseUrl = $"http://localhost:{PORT}/";
+            Task _ = app.RunAsync(baseUrl);
+
+            IHubContext<TrackingHub, ITrackingClient>? hub = app.Services.GetService<IHubContext<TrackingHub, ITrackingClient>>();
+
+            if (hub != null) {
+                TrackerManager.Instance.Tracker = hub.Clients.All;
+            }
         }
     }
 }

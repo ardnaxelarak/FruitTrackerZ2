@@ -1,0 +1,104 @@
+﻿.mainTable {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.itemsTable {
+    border-spacing: 0;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.cell {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    padding: 2px;
+}
+
+.double-cell {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    padding: 2px;
+    margin: auto;
+}
+
+.half-cell {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+}
+
+.quarter-indent {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 20px;
+    padding: 0;
+}
+
+img {
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+.cell-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+}
+
+.dungeon-label-icon {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 20px;
+    height: 16px;
+}
+
+.entrance-medallion {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    width: 24px;
+    height: 24px;
+}
+
+.prize-icon {
+    position: absolute;
+    left: -6px;
+    top: 0;
+    width: 32px;
+    height: 20px;
+}
+
+.key-count {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    font-family: 'Comic Mono';
+    font-size: 16px;
+    text-align: right;
+    color: darkgray;
+}
+
+.all-keys {
+    color: lime;
+}
+
+.dungeon-item-icon {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    width: 24px;
+    height: 24px;
+}

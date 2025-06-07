@@ -43,8 +43,8 @@ namespace FruitTrackerZ2 {
             }
 
             foreach (var icon in contentsIcons) {
-                if (tracking.Locations.ContainsKey(icon.CellId)) {
-                    icon.Value = tracking.Locations[icon.CellId].Value;
+                if (tracking.Locations.TryGetValue(icon.CellId, out ITrackable? value)) {
+                    icon.Value = value.Value;
                 }
             }
         }
@@ -73,11 +73,11 @@ namespace FruitTrackerZ2 {
                 .Build();
 
             for (var i = 0; i < 6; i++) {
-                var pillarStr = $"palaces/pillar{i + 1}";
-                var itemStr = $"palaces/palace{i + 1}item";
-                var bossStr = $"palaces/{bosses[i]}";
+                var pillarStr = $"pillar{i + 1}";
+                var itemStr = $"palace{i + 1}item";
+                var bossStr = $"{bosses[i]}";
 
-                var palace = new PalaceIcon(pillarStr) {
+                var palace = new PalaceIcon($"palaces/{pillarStr}") {
                     BackColor = palaceLayoutPanel.BackColor,
                     CellId = pillarStr,
                     Padding = new(3),
@@ -85,7 +85,7 @@ namespace FruitTrackerZ2 {
                 palaceLayoutPanel.Controls.Add(palace, 3 * (i / 3), i % 3);
                 palaceIcons.Add(palace);
 
-                var item = new LocationIcon(itemStr) {
+                var item = new LocationIcon($"palaces/{itemStr}") {
                     BackColor = palaceLayoutPanel.BackColor,
                     CellId = itemStr,
                     Padding = new(3),
@@ -94,7 +94,7 @@ namespace FruitTrackerZ2 {
                 palaceLayoutPanel.Controls.Add(item, 3 * (i / 3) + 1, i % 3);
                 contentsIcons.Add(item);
 
-                var boss = new LocationIcon(bossStr) {
+                var boss = new LocationIcon($"palaces/{bossStr}") {
                     BackColor = palaceLayoutPanel.BackColor,
                     CellId = bossStr,
                     Padding = new(3),

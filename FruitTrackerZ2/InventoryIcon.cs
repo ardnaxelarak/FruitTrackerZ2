@@ -50,7 +50,7 @@ namespace FruitTrackerZ2 {
         public void UpdateBroadcast() {
             if (CellId.Length > 0) {
                 if (Value < imageSources.Length) {
-                    // TrackerManager.Instance.Tracker?.UpdateItem(CellId, imageSources[Value]);
+                    TrackerManager.Instance.Tracker?.UpdateItem(CellId, imageSources[Value]);
                 }
             }
         }
